@@ -1,0 +1,21 @@
+<project name="test" basedir="." default="mergexml">
+	<property file="build.properties"></property>
+	<echo>${demo.xml.file}</echo>
+	<echo>${plugin.lib.xml.dir}</echo>
+	<echo>${output.xml.dir}</echo>
+	<target name="mergexml">
+		<path id="lib_classpath">
+			<fileset dir="${basedir}/">
+				<include name="xmlmerge.jar" />
+			</fileset>
+		</path>
+		<java classname="org.dom4j.pack.XmlMerge" classpathref="lib_classpath">
+           <arg value="-f"/>
+           <arg value="${demo.xml.file}"/>
+           <arg value="-d"/>
+           <arg value="${plugin.lib.xml.dir}"/>
+           <arg value="-o"/>
+           <arg value="${output.xml.dir}"/>
+        </java>
+	</target>
+</project>
